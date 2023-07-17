@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Background Image with Button</title>
+    <style>
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background-image: url('{% static 'img/form.jpg'%} ');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+{% csrf_token %}
+    <div class="container">
+        <button class="button"><a href="{% url 'bankapp:form' %}">form</a></button>
+    </div>
+</body>
+</html>

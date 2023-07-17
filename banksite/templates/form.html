@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-color: #838582;
+        }
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #75A5F0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"],
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .logout-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .logout-button input[type="button"] {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h2>Registration Form</h2>-->
+        <!--{% if message %}-->
+        <!--<p class="message">{{ message }}</p>-->
+        <!--<a href="{% url 'home' %}">Return to Home</a>-->
+        <!--{% endif %}-->
+        <!--<form action="{% url 'bankapp:form' %}" method="post">-->
+            <!--{% csrf_token %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="name">Name:</label>-->
+                <!--<input type="text" id="name" name="name" value="{{ form.name.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="dob">Date of Birth:</label>-->
+                <!--<input type="date" id="dob" name="dob" value="{{ form.dob.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="age">Age:</label>-->
+                <!--<input type="number" id="age" name="age" value="{{ form.age.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="gender">Gender:</label>-->
+                <!--<select id="gender" name="gender" required>-->
+                    <!--<option value="">Select Gender</option>-->
+                    <!--<option value="male" {% if form.gender.value == 'male' %}selected{% endif %}>Male</option>-->
+                    <!--<option value="female" {% if form.gender.value == 'female' %}selected{% endif %}>Female</option>-->
+                    <!--<option value="other" {% if form.gender.value == 'other' %}selected{% endif %}>Other</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="phone">Phone Number:</label>-->
+                <!--<input type="text" id="phone" name="phone" value="{{ form.phone.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="email">Email:</label>-->
+                <!--<input type="email" id="email" name="email" value="{{ form.email.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="address">Address:</label>-->
+                <!--<input type="text" id="address" name="address" value="{{ form.address.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="district">District:</label>-->
+                <!--<select id="district" name="district" required>-->
+                    <!--<option value="">Select District</option>-->
+                    <!--<option value="Ernakulam" {% if form.district.value == 'Ernakulam' %}selected{% endif %}>Ernakulam</option>-->
+                    <!--<option value="Kannur" {% if form.district.value == 'Kannur' %}selected{% endif %}>Kannur</option>-->
+                    <!--<option value="Thrissur" {% if form.district.value == 'Thrissur' %}selected{% endif %}>Thrissur</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--{% if form.district.value == 'Ernakulam' %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--<option value="aluva" {% if form.branch.value == 'aluva' %}selected{% endif %}>Aluva</option>-->
+                    <!--<option value="kakkanad" {% if form.branch.value == 'kakkanad' %}selected{% endif %}>Kakkanad</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--{% elif form.district.value == 'Kannur' %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--<option value="payyanur" {% if form.branch.value == 'payyanur' %}selected{% endif %}>Payyanur</option>-->
+                    <!--<option value="pazhayangadi" {% if form.branch.value == 'pazhayangadi' %}selected{% endif %}>Pazhayangadi</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--{% elif form.district.value == 'Thrissur' %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--<option value="chavakkad" {% if form.branch.value == 'chavakkad' %}selected{% endif %}>Chavakkad</option>-->
+                    <!--<option value="guruvayur" {% if form.branch.value == 'guruvayur' %}selected{% endif %}>Guruvayur</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--{% endif %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="account-type">Account Type:</label>-->
+                <!--<select id="account-type" name="account-type" required>-->
+                    <!--<option value="">Select Account Type</option>-->
+                    <!--<option value="savings" {% if form.account_type.value == 'savings' %}selected{% endif %}>Savings Account</option>-->
+                    <!--<option value="current" {% if form.account_type.value == 'current' %}selected{% endif %}>Current Account</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>Materials Provided:</label>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="debit-card" name="materials" value="debit-card" {% if 'debit-card' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="debit-card">Debit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="credit-card" name="materials" value="credit-card" {% if 'credit-card' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="credit-card">Credit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="cheque-book" name="materials" value="cheque-book" {% if 'cheque-book' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="cheque-book">Cheque Book</label>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<input type="submit" value="Submit">-->
+            <!--</div>-->
+        <!--</form>-->
+        <!--<div class="logout-button">-->
+            <!--<input type="button" value="Logout">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        {% if message %}
+        <p class="message">{{ message }}</p>
+        <a href="{% url 'home' %}">Return to Home</a>
+        {% endif %}
+        <form action="{% url 'bankapp:success_page' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ form.name.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" value="{{ form.dob.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" value="{{ form.age.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male" {% if form.gender.value == 'male' %}selected{% endif %}>Male</option>
+                    <option value="female" {% if form.gender.value == 'female' %}selected{% endif %}>Female</option>
+                    <option value="other" {% if form.gender.value == 'other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" value="{{ form.phone.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ form.email.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="{{ form.address.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select id="district" name="district" required>
+                    <option value="">Select District</option>
+                    <option value="Ernakulam" {% if form.district.value == 'Ernakulam' %}selected{% endif %}>Ernakulam</option>
+                    <option value="Kannur" {% if form.district.value == 'Kannur' %}selected{% endif %}>Kannur</option>
+                    <option value="Thrissur" {% if form.district.value == 'Thrissur' %}selected{% endif %}>Thrissur</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="">Select Branch</option>
+                    {% for choice in form.branch.choices %}
+                    <option value="{{ choice.0 }}" {% if form.branch.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="account-type">Account Type:</label>
+                <select id="account-type" name="account-type" required>
+                    <option value="">Select Account Type</option>
+                    <option value="savings" {% if form.account_type.value == 'savings' %}selected{% endif %}>Savings Account</option>
+                    <option value="current" {% if form.account_type.value == 'current' %}selected{% endif %}>Current Account</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Materials Provided:</label>
+                    <div>
+                        <input type="radio" id="debit-card" name="materials" value="debit-card" {% if 'debit-card' in form.materials_provide.value %}checked{% endif %}>
+                        <label for="debit-card">Debit Card</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="credit-card" name="materials" value="credit-card" {% if 'credit-card' in form.materials_provide.value %}checked{% endif %}>
+                        <label for="credit-card">Credit Card</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="cheque-book" name="materials" value="cheque-book" {% if 'cheque-book' in form.materials_provide.value %}checked{% endif %}>
+                        <label for="cheque-book">Cheque Book</label>
+                    </div>
+                </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+        <div class="logout-button">
+            <a href="{% url 'bankapp:user_logout' %}"><input type="button"  value="Logout"></a>
+        </div>
+    </div>
+    <script>
+        // Retrieve the district and branch elements
+        var districtSelect = document.getElementById("district");
+        var branchSelect = document.getElementById("branch");
+
+        // Function to update the branch options based on the selected district
+        function updateBranchOptions() {
+            // Clear the existing options
+            branchSelect.innerHTML = "";
+
+            // Retrieve the selected district value
+            var selectedDistrict = districtSelect.value;
+
+            // Define the branch options based on the selected district
+            var branchOptions = [];
+            if (selectedDistrict === "Ernakulam") {
+                branchOptions = [
+                    { value: "aluva", label: "Aluva" },
+                    { value: "kakkanad", label: "Kakkanad" }
+                ];
+            } else if (selectedDistrict === "Kannur") {
+                branchOptions = [
+                    { value: "payyanur", label: "Payyanur" },
+                    { value: "pazhayangadi", label: "Pazhayangadi" }
+                ];
+            } else if (selectedDistrict === "Thrissur") {
+                branchOptions = [
+                    { value: "chavakkad", label: "Chavakkad" },
+                    { value: "guruvayur", label: "Guruvayur" }
+                ];
+            }
+
+            // Add the branch options to the dropdown
+            for (var i = 0; i < branchOptions.length; i++) {
+                var option = document.createElement("option");
+                option.value = branchOptions[i].value;
+                option.text = branchOptions[i].label;
+                branchSelect.appendChild(option);
+            }
+        }
+
+        // Update the branch options initially and whenever the district selection changes
+        updateBranchOptions();
+        districtSelect.addEventListener("change", updateBranchOptions);
+    </script>
+</body>
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h2>Registration Form</h2>-->
+        <!--{% if message %}-->
+        <!--<p class="message">{{ message }}</p>-->
+        <!--<a href="{% url 'home' %}">Return to Home</a>-->
+        <!--{% endif %}-->
+        <!--<form action="{% url 'bankapp:form' %}" method="post">-->
+            <!--{% csrf_token %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="name">Name:</label>-->
+                <!--<input type="text" id="name" name="name" value="{{ form.name.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="dob">Date of Birth:</label>-->
+                <!--<input type="date" id="dob" name="dob" value="{{ form.dob.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="age">Age:</label>-->
+                <!--<input type="number" id="age" name="age" value="{{ form.age.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="gender">Gender:</label>-->
+                <!--<select id="gender" name="gender" required>-->
+                    <!--<option value="">Select Gender</option>-->
+                    <!--<option value="male" {% if form.gender.value == 'male' %}selected{% endif %}>Male</option>-->
+                    <!--<option value="female" {% if form.gender.value == 'female' %}selected{% endif %}>Female</option>-->
+                    <!--<option value="other" {% if form.gender.value == 'other' %}selected{% endif %}>Other</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="phone">Phone Number:</label>-->
+                <!--<input type="text" id="phone" name="phone" value="{{ form.phone.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="email">Email:</label>-->
+                <!--<input type="email" id="email" name="email" value="{{ form.email.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="address">Address:</label>-->
+                <!--<input type="text" id="address" name="address" value="{{ form.address.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="district">District:</label>-->
+                <!--<select id="district" name="district" required>-->
+                    <!--<option value="">Select District</option>-->
+                    <!--<option value="Ernakulam" {% if form.district.value == 'Ernakulam' %}selected{% endif %}>Ernakulam</option>-->
+                    <!--<option value="Kannur" {% if form.district.value == 'Kannur' %}selected{% endif %}>Kannur</option>-->
+                    <!--<option value="Thrissur" {% if form.district.value == 'Thrissur' %}selected{% endif %}>Thrissur</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--{% for choice in form.branch.field.choices %}-->
+
+                    <!--{% if form.branch.value == choice.0 %}-->
+                    <!--<option value="{{ choice.0 }}" selected>{{ choice.1 }}</option>-->
+                    <!--{% else %}-->
+                    <!--<option value="{{ choice.0 }}">{{ choice.1 }}</option>-->
+                    <!--{% endif %}-->
+                    <!--{% endfor %}-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="account-type">Account Type:</label>-->
+                <!--<select id="account-type" name="account-type" required>-->
+                    <!--<option value="">Select Account Type</option>-->
+                    <!--<option value="savings" {% if form.account_type.value == 'savings' %}selected{% endif %}>Savings Account</option>-->
+                    <!--<option value="current" {% if form.account_type.value == 'current' %}selected{% endif %}>Current Account</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>Materials Provided:</label>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="debit-card" name="materials" value="debit-card" {% if 'debit-card' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="debit-card">Debit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="credit-card" name="materials" value="credit-card" {% if 'credit-card' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="credit-card">Credit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="cheque-book" name="materials" value="cheque-book" {% if 'cheque-book' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="cheque-book">Cheque Book</label>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<input type="submit" value="Submit">-->
+            <!--</div>-->
+        <!--</form>-->
+        <!--<div class="logout-button">-->
+            <!--<input type="button" value="Logout">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+
+
+
+
+
+ <!--<body>-->
+    <!--<div class="container">-->
+        <!--<h2>Registration Form</h2>-->
+        <!--{% if message %}-->
+        <!--<p class="message">{{ message }}</p>-->
+        <!--<a href="{% url 'home' %}">Return to Home</a>-->
+        <!--{% endif %}-->
+        <!--<form action="{% url 'bankapp:form' %}" method="post">-->
+            <!--{% csrf_token %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="name">Name:</label>-->
+                <!--<input type="text" id="name" name="name" value="{{ form.name.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="dob">Date of Birth:</label>-->
+                <!--<input type="date" id="dob" name="dob" value="{{ form.dob.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="age">Age:</label>-->
+                <!--<input type="number" id="age" name="age" value="{{ form.age.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="gender">Gender:</label>-->
+                <!--<select id="gender" name="gender" required>-->
+                    <!--<option value="">Select Gender</option>-->
+                    <!--<option value="male" {% if form.gender.value == 'male' %}selected{% endif %}>Male</option>-->
+                    <!--<option value="female" {% if form.gender.value == 'female' %}selected{% endif %}>Female</option>-->
+                    <!--<option value="other" {% if form.gender.value == 'other' %}selected{% endif %}>Other</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="phone">Phone Number:</label>-->
+                <!--<input type="text" id="phone" name="phone" value="{{ form.phone.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="email">Email:</label>-->
+                <!--<input type="email" id="email" name="email" value="{{ form.email.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="address">Address:</label>-->
+                <!--<input type="text" id="address" name="address" value="{{ form.address.value }}" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="district">District:</label>-->
+                <!--<select id="district" name="district" required>-->
+                    <!--<option value="">Select District</option>-->
+                    <!--<option value="Ernakulam" {% if form.district.value == 'Ernakulam' %}selected{% endif %}>Ernakulam</option>-->
+                    <!--<option value="Kannur" {% if form.district.value == 'Kannur' %}selected{% endif %}>Kannur</option>-->
+                    <!--<option value="Thrissur" {% if form.district.value == 'Thrissur' %}selected{% endif %}>Thrissur</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--{% for choice in branch_choices %}-->
+                    <!--<option value="{{ choice.0 }}" {% if form.branch.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>-->
+                    <!--{% endfor %}-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="account-type">Account Type:</label>-->
+                <!--<select id="account-type" name="account-type" required>-->
+                    <!--<option value="">Select Account Type</option>-->
+                    <!--<option value="savings" {% if form.account_type.value == 'savings' %}selected{% endif %}>Savings Account</option>-->
+                    <!--<option value="current" {% if form.account_type.value == 'current' %}selected{% endif %}>Current Account</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label>Materials Provided:</label>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="debit-card" name="materials" value="debit-card" {% if 'debit-card' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="debit-card">Debit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="credit-card" name="materials" value="credit-card" {% if 'credit-card' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="credit-card">Credit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="cheque-book" name="materials" value="cheque-book" {% if 'cheque-book' in form.materials_provide.value %}checked{% endif %}>-->
+                    <!--<label for="cheque-book">Cheque Book</label>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<input type="submit" value="Submit">-->
+            <!--</div>-->
+        <!--</form>-->
+        <!--<div class="logout-button">-->
+            <!--<input type="button" value="Logout">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+
+
+
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h2>Registration Form</h2>-->
+        <!--<form action="{% url 'bankapp:form' %}" method="post">-->
+            <!--{% csrf_token %}-->
+            <!--{% if form.errors %}-->
+            <!--<div class="form-errors">-->
+                <!--<ul>-->
+                    <!--{% for field in form %}-->
+                    <!--{% for error in field.errors %}-->
+                    <!--<li>{{ field.label }}: {{ error }}</li>-->
+                    <!--{% endfor %}-->
+                    <!--{% endfor %}-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--{% endif %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="name">Name:</label>-->
+                <!--<input type="text" id="name" name="name" value="{{ form.name.value }}" required>-->
+            <!--</div>-->
+             <!--<div class="form-group">-->
+                <!--<label for="dob">Date of Birth:</label>-->
+                <!--<input type="text" id="dob" name="dob" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="age">Age:</label>-->
+                <!--<input type="text" id="age" name="age" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="gender">Gender:</label>-->
+                <!--<select id="gender" name="gender" required>-->
+                    <!--<option value="male">Male</option>-->
+                    <!--<option value="female">Female</option>-->
+                    <!--<option value="other">Other</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="phone">Phone Number:</label>-->
+                <!--<input type="text" id="phone" name="phone" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="email">Email:</label>-->
+                <!--<input type="text" id="email" name="email" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="address">Address:</label>-->
+                <!--<input type="text" id="address" name="address" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="district">District:</label>-->
+                <!--<select id="district" name="district" required>-->
+                    <!--<option value="">Select District</option>-->
+                    <!--<option value="branch1">Kannur</option>-->
+                    <!--<option value="branch2">Ernakulam</option>-->
+                    <!--<option value="branch3">Thrissur</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--<option value="branch1">Branch 1</option>-->
+                    <!--<option value="branch2">Branch 2</option>-->
+                    <!--<option value="branch3">Branch 3</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="account-type">Account Type:</label>-->
+                <!--<select id="account-type" name="account-type" required>-->
+                    <!--<option value="">Select Account Type</option>-->
+                    <!--<option value="savings">Savings Account</option>-->
+                    <!--<option value="credit">Credit Account</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="materials-provided">Materials Provided:</label>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="debit-card" name="materials[]" value="debit-card">-->
+                    <!--<label for="debit-card">Debit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="credit-card" name="materials[]" value="credit-card">-->
+                    <!--<label for="credit-card">Credit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="cheque-book" name="materials[]" value="cheque-book">-->
+                    <!--<label for="cheque-book">Cheque Book</label>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<input type="submit" value="Submit">-->
+            <!--</div>-->
+        <!--</form>-->
+        <!--<div class="logout-button">-->
+            <!--<input type="button" value="Logout">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+
+<!--<body>-->
+    <!--<div class="container">-->
+        <!--<h2>Registration Form</h2>-->
+        <!--<form action="{% url 'bankapp:form' %}" method="post">-->
+            <!--{% csrf_token %}-->
+            <!--<div class="form-group">-->
+                <!--<label for="name">Name:</label>-->
+                <!--<input type="text" id="name" name="name" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="dob">Date of Birth:</label>-->
+                <!--<input type="text" id="dob" name="dob" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="age">Age:</label>-->
+                <!--<input type="text" id="age" name="age" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="gender">Gender:</label>-->
+                <!--<select id="gender" name="gender" required>-->
+                    <!--<option value="male">Male</option>-->
+                    <!--<option value="female">Female</option>-->
+                    <!--<option value="other">Other</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="phone">Phone Number:</label>-->
+                <!--<input type="text" id="phone" name="phone" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="email">Email:</label>-->
+                <!--<input type="text" id="email" name="email" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="address">Address:</label>-->
+                <!--<input type="text" id="address" name="address" required>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="district">District:</label>-->
+                <!--<select id="district" name="district" required>-->
+                    <!--<option value="">Select District</option>-->
+                    <!--<option value="branch1">Kannur</option>-->
+                    <!--<option value="branch2">Ernakulam</option>-->
+                    <!--<option value="branch3">Thrissur</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="branch">Branch:</label>-->
+                <!--<select id="branch" name="branch" required>-->
+                    <!--<option value="">Select Branch</option>-->
+                    <!--<option value="branch1">Branch 1</option>-->
+                    <!--<option value="branch2">Branch 2</option>-->
+                    <!--<option value="branch3">Branch 3</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="account-type">Account Type:</label>-->
+                <!--<select id="account-type" name="account-type" required>-->
+                    <!--<option value="">Select Account Type</option>-->
+                    <!--<option value="savings">Savings Account</option>-->
+                    <!--<option value="credit">Credit Account</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="materials-provided">Materials Provided:</label>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="debit-card" name="materials[]" value="debit-card">-->
+                    <!--<label for="debit-card">Debit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="credit-card" name="materials[]" value="credit-card">-->
+                    <!--<label for="credit-card">Credit Card</label>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input type="checkbox" id="cheque-book" name="materials[]" value="cheque-book">-->
+                    <!--<label for="cheque-book">Cheque Book</label>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<input type="submit" value="Submit">-->
+            <!--</div>-->
+        <!--</form>-->
+        <!--<div class="logout-button">-->
+            <!--<input type="button" value="Logout">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</body>-->
+</html>

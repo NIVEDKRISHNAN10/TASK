@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .navbar li {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #73FA1C;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Styles for the banner */
+.banner {
+    text-align: center;
+    margin-top: 100px; /* Adjust the margin-top value as needed */
+}
+
+.center-image {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+/* Styles for the button */
+.center {
+    text-align: center;
+    margin-top: 50px; /* Adjust the margin-top value as needed */
+}
+
+.button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'bankapp:user_login' %}">Login</a></li>
+            <li><a href="{% url 'bankapp:register' %}">Register</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Branches</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'bankapp:redirect_to_wikipedia' district='kannur' %}">Kannur</a>
+                    <a href="{% url 'bankapp:redirect_to_wikipedia' district='ernakulam' %}">Ernakulam</a>
+                    <a href="{% url 'bankapp:redirect_to_wikipedia' district='thrissur' %}">Thrissur</a>
+                    <a href="{% url 'bankapp:redirect_to_wikipedia' district='kozhikode' %}">Kozhikode</a>
+                    <a href="{% url 'bankapp:redirect_to_wikipedia' district='kollam' %}">Kollam</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="banner">
+        <h4><i>HOME PAGE</i></h4>
+        <img src="{% static 'img/banner.jpg'%}" width="100%" alt="Image" class="center-image">
+
+    </div>
+
+    <div class="center">
+        <button class="button" ><a href="{% url 'bankapp:user_login' %}">CONTINUE BANKING</a></button>
+    </div>
+</body>
+
+</html>
